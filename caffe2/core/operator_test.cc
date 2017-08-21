@@ -209,7 +209,7 @@ TEST(OperatorDeathTest, DISABLED_CannotAccessRepeatedParameterWithWrongType) {
   op_def.set_type("JustTest");
   op_def.add_input("input");
   op_def.add_output("output");
-  AddArgument<vector<float>>("arg0", vector<float>{0.1}, &op_def);
+  AddArgument<vector<float>>("arg0", vector<float>{0.1f}, &op_def);
   EXPECT_NE(ws.CreateBlob("input"), nullptr);
   OperatorBase op(op_def, &ws);
   auto args = op.GetRepeatedArgument<float>("arg0");

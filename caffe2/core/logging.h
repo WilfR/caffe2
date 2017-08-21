@@ -6,6 +6,8 @@
 #include <functional>
 #include <limits>
 #include <sstream>
+#include <vector>
+
 
 #include "caffe2/core/flags.h"
 #include "caffe2/proto/caffe2.pb.h"
@@ -50,6 +52,24 @@ constexpr bool IsUsingGoogleLogging() {
  * the commandline flags to set the log level.
  */
 void ShowLogInfoToStderr();
+
+
+template <typename T>
+inline std::stringstream&
+operator<<(std::stringstream& s, const std::vector< T, std::allocator<T> >& v)
+{
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		if (i > 0)
+		{
+			s << "_";
+		}
+		s << v[i];
+	}
+
+	return s;
+}
+
 
 inline void MakeStringInternal(std::stringstream& /*ss*/) {}
 

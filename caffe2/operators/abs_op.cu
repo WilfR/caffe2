@@ -5,6 +5,8 @@
 
 namespace caffe2 {
 
+
+
 template <typename T>
 __global__ void AbsKernel(const int N, const T* X, T* Y) {
   CUDA_1D_KERNEL_LOOP(i, N) {
@@ -52,10 +54,26 @@ struct AbsGradientCUDAFunctor {
 REGISTER_CUDA_OPERATOR(
     Abs,
     UnaryElementwiseOp<TensorTypes<float>, CUDAContext, AbsCUDAFunctor>);
+
 REGISTER_CUDA_OPERATOR(
     AbsGradient,
     BinaryElementwiseOp<
         TensorTypes<float>,
         CUDAContext,
         WithoutBroadcast<AbsGradientCUDAFunctor>>);
+
 } // namespace caffe2
+
+
+void operator<<(std::stringstream& s, const std::vector<caffe2::TIndex, std::allocator<caffe2::TIndex>>& v)
+{
+	auto n = v.size();
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		if (i > 0)
+		{
+			s << "_";
+		}
+		s << v[i];
+	}
+}

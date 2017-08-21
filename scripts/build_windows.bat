@@ -4,7 +4,7 @@
 
 :: This script shows how one can build a Caffe2 binary for windows.
 
-@echo off
+@echo on
 
 SET ORIGINAL_DIR=%cd%
 SET CAFFE2_ROOT=%~dp0%..

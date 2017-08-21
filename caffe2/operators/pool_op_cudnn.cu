@@ -409,7 +409,7 @@ class CuDNNPoolGradientOp : public ConvPoolOpBase<CUDAContext> {
 
   // Input: X, Y, dY
   // Output: dX
-  INPUT_TAGS(IN, OUT, OUT_GRAD);
+  ////INPUT_TAGS(IN, OUT, OUT_GRAD);
 };
 
 namespace {
